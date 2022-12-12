@@ -1,4 +1,12 @@
-class Stack<T> {
+interface IStack<T> {
+	push(item: T): void;
+	pop(): T | undefined;
+	peek(): T | undefined;
+	search(obj: T): number;
+	size(): number;
+}
+
+class Stack<T> implements IStack<T> {
 	private items: T[] = [];
 	private capacity: number;
 
