@@ -35,3 +35,43 @@ class Queue<T> implements IQueue<T> {
 		return this.items.length;
 	}
 }
+
+// Push - Adiciona um objeto na última posição (tail)
+console.log("--------- PUSH ----------");
+
+const queue = new Queue();
+queue.offer("Mark");
+queue.offer("John");
+queue.offer("Karen");
+queue.offer("Mac");
+console.log(queue);
+
+// Poll - remove o elemento que esta no head da queue (primeira posição) e retorna ele
+console.log(" ");
+console.log("--------- POLL -----------");
+
+const queue2 = new Queue();
+queue2.offer("Mark");
+queue2.offer("John");
+queue2.offer("Karen");
+queue2.offer("Mac");
+console.log(queue);
+
+const firstInLine = queue2.poll();
+console.log(firstInLine);
+console.log(queue2);
+
+// peek - retorna o objeto que está no head sem remover ele
+console.log(" ");
+console.log("--------- PEEK -----------");
+const queue3 = new Queue();
+queue3.offer("Mark");
+queue3.offer("John");
+queue3.offer("Karen");
+queue3.offer("Mac");
+console.log(queue);
+
+const firstInLine2 = queue3.poll();
+console.log(firstInLine2);
+
+console.log(queue);
