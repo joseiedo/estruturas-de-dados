@@ -108,23 +108,20 @@ function addTwoNumbers(l1: ListNode, l2: ListNode) {
 	addNodesToAnArray(l1, l1Arr);
 	addNodesToAnArray(l2, l2Arr);
 
-	console.log(l1Arr);
-	console.log(l2Arr);
-
 	const sum = sumValuesOfTwoArraysAndReverse(l1Arr, l2Arr);
-	console.log(sum);
+
 	const linkedList = new LinkedList();
 
 	sum.forEach((item) => {
 		linkedList.push(item);
 	});
 
-	console.log(linkedList);
+	return linkedList.head;
 }
 
 function sumValuesOfTwoArraysAndReverse(l1Arr: number[], l2Arr: number[]) {
-	const value_1 = Number(l1Arr.join(""));
-	const value_2 = Number(l2Arr.join(""));
+	const value_1 = BigInt(l1Arr.reverse().join(""));
+	const value_2 = BigInt(l2Arr.reverse().join(""));
 
 	const sum = value_1 + value_2;
 
@@ -138,16 +135,19 @@ function addNodesToAnArray(l1: ListNode, arr: number[]) {
 	if (l1.next) addNodesToAnArray(l1.next, arr);
 }
 
-// const node1 = new ListNode(2);
-// const node2 = new ListNode(4, node1);
-// const node3 = new ListNode(3, node2);
+// teste 1
+const nodeA = new ListNode(2);
+const nodeB = new ListNode(4, nodeA);
+const nodeC = new ListNode(3, nodeB);
 
-// const node4 = new ListNode(5);
-// const node5 = new ListNode(6, node4);
-// const node6 = new ListNode(4, node5);
+const nodeD = new ListNode(5);
+const nodeE = new ListNode(6, nodeD);
+const nodeF = new ListNode(4, nodeE);
 
-// addTwoNumbers(node3, node6);
+// deve retornar [7,0,8]
+console.log(addTwoNumbers(nodeC, nodeF));
 
+// teste 2
 const node1 = new ListNode(9);
 const node2 = new ListNode(9, node1);
 const node3 = new ListNode(9, node2);
@@ -161,4 +161,5 @@ const node9 = new ListNode(9, node8);
 const node10 = new ListNode(9, node9);
 const node11 = new ListNode(9, node10);
 
-addTwoNumbers(node7, node11);
+// deve retornar [8,9,9,9,0,0,0,1]
+console.log(addTwoNumbers(node7, node11));
