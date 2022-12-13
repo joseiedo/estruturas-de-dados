@@ -1,22 +1,22 @@
-class myNode<T> {
-	public value: T | undefined;
-	public next: myNode<T> | null;
-	public prev: myNode<T> | null;
-	constructor(value?: T) {
-		this.value = value;
+class myNode {
+	public val: unknown;
+	public next: myNode | null;
+	public prev: myNode | null;
+	constructor(val?: unknown) {
+		this.val = val;
 		this.next = null;
 		this.prev = null;
 	}
 }
 
-class LinkedList<T> {
-	public head: myNode<T> | null = null;
-	public tail: myNode<T> | null = null;
+class LinkedList {
+	public head: myNode | null = null;
+	public tail: myNode | null = null;
 	private length: number = 0;
 
-	constructor(value?: T) {
-		if (value) {
-			const node = new myNode<T>(value);
+	constructor(val?: unknown) {
+		if (val) {
+			const node = new myNode(val);
 			this.head = node;
 			this.tail = node;
 			this.length = 1;
@@ -24,8 +24,8 @@ class LinkedList<T> {
 	}
 
 	// Vai adicionar o valor para o final da lista (como em uma stack)
-	push(value: T): void {
-		const node = new myNode(value);
+	push(val: unknown): void {
+		const node = new myNode(val);
 
 		if (!this.head || !this.tail) {
 			this.head = node;
@@ -34,12 +34,10 @@ class LinkedList<T> {
 			return;
 		}
 
-		if (this.tail) {
-			this.tail.next = node;
-			node.prev = this.tail;
-			this.tail = node;
-			this.length++;
-		}
+		this.tail.next = node;
+		node.prev = this.tail;
+		this.tail = node;
+		this.length++;
 	}
 
 	// Vai remover o valor final da lista (como em uma stack ou queue)
@@ -91,3 +89,76 @@ class LinkedList<T> {
 		return this.length;
 	}
 }
+
+// um exemplo seguindo o exercício do leetcode
+// https://leetcode.com/problems/add-two-numbers/
+
+class ListNode {
+	val: number;
+	next: ListNode | null;
+	constructor(val?: number, next?: ListNode | null) {
+		this.val = val === undefined ? 0 : val;
+		this.next = next === undefined ? null : next;
+	}
+}
+
+function addTwoNumbers(l1: ListNode, l2: ListNode) {
+	const l1Arr: number[] = [];
+	const l2Arr: number[] = [];
+	addNodesToAnArray(l1, l1Arr);
+	addNodesToAnArray(l2, l2Arr);
+
+	console.log(l1Arr);
+	console.log(l2Arr);
+
+	const sum = sumValuesOfTwoArraysAndReverse(l1Arr, l2Arr);
+	console.log(sum);
+	const linkedList = new LinkedList();
+
+	sum.forEach((item) => {
+		linkedList.push(item);
+	});
+
+	console.log(linkedList);
+}
+
+function sumValuesOfTwoArraysAndReverse(l1Arr: number[], l2Arr: number[]) {
+	const value_1 = Number(l1Arr.join(""));
+	const value_2 = Number(l2Arr.join(""));
+
+	const sum = value_1 + value_2;
+
+	const reversedValues: string[] = sum.toString().split("").reverse();
+	const sumValueArr: number[] = reversedValues.map(Number);
+	return sumValueArr;
+}
+
+function addNodesToAnArray(l1: ListNode, arr: number[]) {
+	arr.push(l1.val);
+	if (l1.next) addNodesToAnArray(l1.next, arr);
+}
+
+// const node1 = new ListNode(2);
+// const node2 = new ListNode(4, node1);
+// const node3 = new ListNode(3, node2);
+
+// const node4 = new ListNode(5);
+// const node5 = new ListNode(6, node4);
+// const node6 = new ListNode(4, node5);
+
+// addTwoNumbers(node3, node6);
+
+const node1 = new ListNode(9);
+const node2 = new ListNode(9, node1);
+const node3 = new ListNode(9, node2);
+const node4 = new ListNode(9, node3);
+const node5 = new ListNode(9, node4);
+const node6 = new ListNode(9, node5);
+const node7 = new ListNode(9, node6);
+
+const node8 = new ListNode(9);
+const node9 = new ListNode(9, node8);
+const node10 = new ListNode(9, node9);
+const node11 = new ListNode(9, node10);
+
+addTwoNumbers(node7, node11);
