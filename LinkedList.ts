@@ -23,10 +23,11 @@ class LinkedList<T> {
 		}
 	}
 
+	// Vai adicionar o valor para o final da lista (como em uma stack)
 	push(value: T): void {
 		const node = new myNode(value);
 
-		if (!this.head && !this.tail) {
+		if (!this.head || !this.tail) {
 			this.head = node;
 			this.tail = node;
 			this.length = 1;
@@ -41,26 +42,48 @@ class LinkedList<T> {
 		}
 	}
 
+	// Vai remover o valor final da lista (como em uma stack ou queue)
 	pop() {
-		if (!this.tail && !this.head) {
+		if (!this.tail || !this.head) {
 			return undefined;
 		}
 
 		let node = null;
-		if (this.length === 1) {
+
+		if (this.tail.prev) {
+			node = this.tail;
+			this.tail = this.tail.prev;
+			this.tail.next = null;
+			node.prev = null;
+		} else {
 			node = this.tail;
 			this.head = null;
 			this.tail = null;
 		}
 
-		if (this.tail?.prev) {
-			node = this.tail;
-			this.tail = this.tail.prev;
-			this.tail.next = null;
-			node.prev = null;
+		this.length = this.length - 1;
+		return node;
+	}
+
+	// remove o elemento da primeira posição (head)
+	poll() {
+		if (!this.tail || !this.head) {
+			return undefined;
 		}
 
-		this.length = this.length - 1;
+		let node;
+		if (this.head.next) {
+			node = this.head;
+			this.head = this.head.next;
+			this.head.prev = null;
+			node.next = null;
+		} else {
+			node = this.head;
+			this.head = null;
+			this.tail = null;
+		}
+
+		this.length--;
 		return node;
 	}
 
@@ -68,17 +91,3 @@ class LinkedList<T> {
 		return this.length;
 	}
 }
-
-// const foo = new myNode(1);
-// const fish = new myNode("5");
-
-const linkedList = new LinkedList();
-linkedList.push("Uva");
-linkedList.push("Banana");
-linkedList.push("Maçã");
-console.table(linkedList);
-
-const node = linkedList.pop();
-console.table(node);
-
-console.table(linkedList);
