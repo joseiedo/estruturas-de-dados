@@ -12,3 +12,5 @@ Toda configuração usada para o typescript está no arquivo ***tsconfig.json***
 - [Stacks](https://github.com/joseiedo/estruturas-de-dados/blob/main/Stack.ts)
 - [Queue](https://github.com/joseiedo/estruturas-de-dados/blob/main/Queue.ts)
 - [LinkedList](https://github.com/joseiedo/estruturas-de-dados/blob/main/LinkedList.ts)
+- [LinkedList](https://github.com/joseiedo/estruturas-de-dados/blob/main/LinkedList.ts)
+- [StaticArray](https://github.com/joseiedo/estruturas-de-dados/blob/main/StaticArray.ts)
