@@ -4,9 +4,11 @@ Como não há algo semelhante a biblioteca collections do java para Typescript, 
 
 ## Dependências
 
-Não há dependências, o próprio vscode mesmo tem suporte para typescript, porém se seu editor de código não tiver suporte, será necessário configurar.
+Não há dependências além do próprio typescript, o próprio vscode mesmo tem suporte para typescript, porém se seu editor de código não tiver suporte, será necessário configurar.
 
 Para rodar o projeto, recomendo usar o ```tsc -w``` para compilar o código Typescript para Javascript e usar ```./node nomeDoArquivo.js``` para rodar.
+
+Caso não tenha o typescript instalado, digite ```npm install typescript```.
 Toda configuração usada para o typescript está no arquivo ***tsconfig.json***
 ## Estruturas já feitas
 - [Stacks](https://github.com/joseiedo/estruturas-de-dados/blob/main/Stack.ts)
